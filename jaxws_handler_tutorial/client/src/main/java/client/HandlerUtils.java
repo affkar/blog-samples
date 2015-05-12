@@ -1,4 +1,4 @@
-package client;
+/*package client;
 // package service;
 
 import java.net.URI;
@@ -73,3 +73,4 @@ public class HandlerUtils {
       }
    }
 }
+*/

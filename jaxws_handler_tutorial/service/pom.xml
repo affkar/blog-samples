@@ -49,10 +49,22 @@
                                             </wsdl>
                                             <wsdlLocation>classpath:DoubleIt.wsdl</wsdlLocation>
                                         </wsdlOption>
+                                        <wsdlOption>
+                                            <wsdl>
+                                                ${basedir}/src/main/resources/TripleIt.wsdl
+                                            </wsdl>
+                                            <wsdlLocation>classpath:TripleIt.wsdl</wsdlLocation>
+                                        </wsdlOption>
+                                        <wsdlOption>
+                                            <wsdl>
+                                                ${basedir}/src/main/resources/Collator.wsdl
+                                            </wsdl>
+                                            <wsdlLocation>classpath:Collator.wsdl</wsdlLocation>
+                                        </wsdlOption>
                                     </wsdlOptions>
                                 </configuration>
                             </execution>
-                        </executions>
+						</executions>
                     </plugin>
                 </plugins>
             </build>
@@ -73,6 +85,7 @@
                                     </wsdlDirectory>
                                     <wsdlFiles>
                                         <wsdlFile>DoubleIt.wsdl</wsdlFile>
+                                        <wsdlFile>TripleIt.wsdl</wsdlFile>
                                     </wsdlFiles>
                                     <wsdlLocation>/*</wsdlLocation>
                                     <sourceDestDir>

@@ -2,9 +2,9 @@
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
     version="2.0">
 
-    <endpoint
+    <!-- <endpoint
         name="Endpoint_for_DoubleIt"
         implementation="service.DoubleItPortTypeImpl"
         wsdl="WEB-INF/wsdl/DoubleIt.wsdl"
-        url-pattern="/services/doubleit"/>       
+        url-pattern="/services/doubleit"/>     -->   
 </endpoints>

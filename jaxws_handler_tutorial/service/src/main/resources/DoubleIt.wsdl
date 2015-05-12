@@ -8,7 +8,7 @@
    targetNamespace="http://www.example.org/contract/DoubleIt">
    <wsdl:types>
       <xsd:schema targetNamespace="http://www.example.org/schema/DoubleIt">
-         <xsd:element name="DoubleIt">
+         <xsd:element name="DoubleItRequest">
             <xsd:complexType>
                <xsd:sequence>
                   <xsd:element name="numberToDouble" type="xsd:int"/>
@@ -25,7 +25,7 @@
       </xsd:schema>
    </wsdl:types>
    <wsdl:message name="DoubleItRequest">
-      <wsdl:part element="di:DoubleIt" name="parameters" />
+      <wsdl:part element="di:DoubleItRequest" name="parameters" />
    </wsdl:message>
    <wsdl:message name="DoubleItResponse">
       <wsdl:part element="di:DoubleItResponse" name="parameters" />

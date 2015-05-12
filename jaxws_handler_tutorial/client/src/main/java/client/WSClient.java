@@ -1,4 +1,4 @@
-package client;
+/*package client;
 
 import org.example.contract.doubleit.DoubleItPortType;
 import org.example.contract.doubleit.DoubleItService;
@@ -62,3 +62,4 @@ public class WSClient {
    }
 }
 
+*/

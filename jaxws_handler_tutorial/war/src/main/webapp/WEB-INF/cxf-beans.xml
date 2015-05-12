@@ -14,4 +14,17 @@
         wsdlLocation="WEB-INF/wsdl/DoubleIt.wsdl"
         address="/doubleit">
     </jaxws:endpoint>
+    <jaxws:endpoint 
+        id="tripleit"
+        implementor="service.TripleItPortTypeImpl"
+        wsdlLocation="WEB-INF/wsdl/TripleIt.wsdl"
+        address="/tripleit">
+    </jaxws:endpoint>
+    <jaxws:endpoint 
+        id="collator"
+        implementor="service.CollatorPortTypeImpl"
+        wsdlLocation="WEB-INF/wsdl/Collator.wsdl"
+        address="/collator">
+    </jaxws:endpoint>
+    
 </beans>

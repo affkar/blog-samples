@@ -1,48 +1,55 @@
 package service;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.ws.LogicalMessage;
-import javax.xml.ws.ProtocolException;
+import java.util.Date;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.xml.namespace.QName;
 import javax.xml.ws.handler.LogicalMessageContext;
 import javax.xml.ws.handler.MessageContext;
 
-import org.example.schema.doubleit.DoubleIt;
-import org.example.schema.doubleit.ObjectFactory;
+public class ResponseTimesLogicalHandler implements
+		javax.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
 
-public class LogicalHandler implements javax.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
+	private static final String RESPONDED_TIME = "responded-time";
+	private static final String REQUESTED_TIME = "requested-time";
 
-   @Override
-   public void close(MessageContext mc) {
-   }
+	private AtomicInteger messageId=new AtomicInteger(1); 
+	
+	@Override
+	public void close(MessageContext mc) {
+	}
 
-   @Override
-   public boolean handleFault(LogicalMessageContext messagecontext) {
-      return true;
-   }
+	@Override
+	public boolean handleFault(LogicalMessageContext messagecontext) {
+		return true;
+	}
 
-   @Override
-   public boolean handleMessage(LogicalMessageContext mc) {
-      HandlerUtils.printMessageContext("Service LogicalHandler", mc);
-      if (Boolean.FALSE.equals(mc.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY))) {
-         try {
-            LogicalMessage msg = mc.getMessage();
-            JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
-            Object payload = msg.getPayload(jaxbContext);
-            if (payload instanceof DoubleIt) {
-               DoubleIt req = (DoubleIt) payload;
-               if (req.getNumberToDouble() == 30) {
-                  throw new ProtocolException(
-                        "Doubling 30 is not allowed by the web service provider.");
-               }
-            }
-         } catch (JAXBException ex) {
-            throw new ProtocolException(ex);
-         }
-      }
-      return true;
-   }
+	@Override
+	public boolean handleMessage(LogicalMessageContext mc) {
+		if (Boolean.FALSE.equals(mc
+				.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY))) {
+			mc.put(REQUESTED_TIME, new Date());
+			mc.put("RequestId", messageId.getAndIncrement());
+		} else {
+			mc.put(RESPONDED_TIME, new Date());
+			Map<String, Object> propertyMap = mc;
+			System.out.println("responsetimeinms<"
+					+ getTimeDifference((Date) mc.get(REQUESTED_TIME),
+							(Date) mc.get(RESPONDED_TIME)) + ">WSDL Interface<"
+					+ (QName) propertyMap.get(MessageContext.WSDL_INTERFACE)
+					+ ">WSDL Operation<"
+					+ (QName) propertyMap.get(MessageContext.WSDL_OPERATION)
+					+ ">WSDL Port<"
+					+ (QName) propertyMap.get(MessageContext.WSDL_PORT)
+					+ ">WSDL Service<"
+					+ (QName) propertyMap.get(MessageContext.WSDL_SERVICE));
+		}
+		return true;
+	}
+
+	private Long getTimeDifference(Date date1, Date date2) {
+		return (date2.getTime() - date1.getTime());
+	}
 
 }
-
