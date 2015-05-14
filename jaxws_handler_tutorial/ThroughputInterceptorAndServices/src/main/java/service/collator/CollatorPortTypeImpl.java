@@ -1,10 +1,12 @@
-package service;
+package service.collator;
 
 import org.example.contract.collator.CollatorPortType;
 import org.example.schema.collator.PrintLogsRequest;
 import org.example.schema.collator.PrintLogsResponse;
 import org.example.schema.collator.ResetRequest;
 import org.example.schema.collator.ResetResponse;
+
+import service.performance.CollatorDaemon;
 
 public class CollatorPortTypeImpl implements CollatorPortType{
 

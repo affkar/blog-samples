@@ -1,0 +1,19 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cxf-blueprint-core="http://cxf.apache.org/blueprint/core">
+
+<!-- 	<bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	<bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" /> -->
+
+
+	<reference id="throughputInterceptor" interface="service.interceptor.api.ThroughputPhaseInterceptor"/>
+	<cxf-blueprint-core:bus>
+		<cxf-blueprint-core:inInterceptors>
+			<ref component-id="throughputInterceptor" />
+		</cxf-blueprint-core:inInterceptors>
+		<cxf-blueprint-core:outInterceptors>
+			<ref component-id="throughputInterceptor" />
+		</cxf-blueprint-core:outInterceptors>
+	</cxf-blueprint-core:bus>
+
+</blueprint>

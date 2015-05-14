@@ -15,7 +15,11 @@
    <url>http://web-gmazza.rhcloud.com/blog/entry/jaxws-handler-tutorial</url>
 
    <modules>
-      <module>service</module>
+       <module>ThroughputInterceptor-api</module>
+       <module>ThroughputInterceptorAndServices</module>
+       <module>DummyThroughputInterceptor</module>
+
+       <module>service</module>
       <module>war</module>
       <module>client</module>
    </modules>

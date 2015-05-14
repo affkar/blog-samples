@@ -9,18 +9,8 @@
              http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
              ">
 
-   <jaxws:endpoint 
-      id="doubleit"
-      implementor="service.DoubleItPortTypeImpl"
-      wsdlLocation="DoubleIt.wsdl"
-      address="/doubleit">
-   </jaxws:endpoint>
-   
-   <jaxws:endpoint 
-      id="tripleit"
-      implementor="service.TripleItPortTypeImpl"
-      wsdlLocation="TripleIt.wsdl"
-      address="/tripleit">
-   </jaxws:endpoint>
+	<service id="DummyThroughputPhaseInterceptor" interface="service.interceptor.api.ThroughputPhaseInterceptor">
+		<bean class="service.dummyinterceptor.impl.DummyThroughputCalculationInterceptor" />
+	</service>
 
-</blueprint>	
+</blueprint>

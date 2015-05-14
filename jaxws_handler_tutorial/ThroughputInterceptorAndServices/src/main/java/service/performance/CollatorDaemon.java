@@ -1,4 +1,4 @@
-package service;
+package service.performance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,11 @@ public class CollatorDaemon {
 	}
 	
 	public List<String> log(){
-		
 		List<String> logs=new ArrayList<String>();
 		for(Controllable handler:handlers){
-			logs.add(handler.getStatistics().toString());
+			for(PerformanceAndThroughputInfo info: handler.getStatistics().getAllPerformanceAndThroughputInfo()){
+				logs.add(info.toString());
+			}
 		}
 		return logs;
 	}
@@ -24,7 +25,6 @@ public class CollatorDaemon {
 		for(Controllable handler:handlers){
 			handler.reset();
 		}
-		handlers.clear();
 	}
 	
 	private static CollatorDaemon collatorDaemon=new CollatorDaemon();

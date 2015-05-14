@@ -1,13 +1,16 @@
-package service;
+package service.performance;
 
 import javax.xml.namespace.QName;
 
-public class ServiceAndOperation {
+public final class ServiceAndOperation {
 
 	private QName service;
 	private QName operation;
 	public ServiceAndOperation(QName service, QName operation) {
 		super();
+		if(service==null || operation == null){
+			throw new IllegalArgumentException("Service or Operation was null");
+		}
 		this.service = service;
 		this.operation = operation;
 	}
@@ -47,8 +50,5 @@ public class ServiceAndOperation {
 			return false;
 		return true;
 	}
-	
-	
-	
 	
 }

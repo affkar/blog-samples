@@ -30,4 +30,3 @@ public class ValueCheckInInterceptor extends AbstractPhaseInterceptor<Message> {
         }
     }
 }
-
