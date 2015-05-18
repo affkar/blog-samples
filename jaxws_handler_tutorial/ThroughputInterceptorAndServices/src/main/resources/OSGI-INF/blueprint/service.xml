@@ -9,9 +9,16 @@
              http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
              ">
 
-	<service id="ThroughputPhaseInterceptor" interface="service.interceptor.api.ThroughputPhaseInterceptor">
-		<bean class="service.interceptor.impl.ThroughputCalculationInterceptor" />
+	<service id="InboundPerfInterceptor" interface="service.interceptor.api.InboundPerfPhaseInterceptor">
+		<bean class="service.interceptor.impl.InboundPerfInterceptor" />
 	</service>
+	<service id="OutboundPerfInterceptor" interface="service.interceptor.api.OutboundPerfPhaseInterceptor">
+		<bean class="service.interceptor.impl.OutboundPerfInterceptor" />
+	</service>
+	<service id="InboundPayloadSizeInterceptor" interface="service.interceptor.api.InboundPayloadSizePhaseInterceptor">
+		<bean class="service.interceptor.impl.InboundPayloadSizeInterceptor" />
+	</service>
+	
 
 	<jaxws:endpoint 
       id="collator"

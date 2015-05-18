@@ -9,8 +9,9 @@
              http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
              ">
 
-	<service id="DummyThroughputPhaseInterceptor" interface="service.interceptor.api.ThroughputPhaseInterceptor">
-		<bean class="service.dummyinterceptor.impl.DummyThroughputCalculationInterceptor" />
-	</service>
+	<service id="InboundPerfInterceptor" interface="service.interceptor.api.InboundPerfPhaseInterceptor" ref="DummyThroughputCalculationInterceptor"/>
+	<service id="OutboundPerfInterceptor" interface="service.interceptor.api.OutboundPerfPhaseInterceptor" ref="DummyThroughputCalculationInterceptor"/>
+	<service id="InboundPayloadSizeInterceptor" interface="service.interceptor.api.InboundPayloadSizePhaseInterceptor" ref="DummyThroughputCalculationInterceptor"/>
+	<bean id="DummyThroughputCalculationInterceptor" class="service.dummyinterceptor.impl.DummyThroughputCalculationInterceptor" />
 
 </blueprint>

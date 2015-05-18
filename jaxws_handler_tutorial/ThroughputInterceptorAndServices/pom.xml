@@ -83,7 +83,11 @@
 						<instructions>
 							<Import-Package>javax.annotation, javax.jws, javax.jws.soap, javax.xml.bind, javax.xml.bind.annotation, javax.xml.namespace, javax.xml.soap, javax.xml.ws, javax.xml.ws.handler, javax.xml.ws.handler.soap, org.osgi.service.blueprint, org.w3c.dom,org.apache.cxf.interceptor;version="2.7.0.redhat-610379",service.interceptor.api;version=1.0-SNAPSHOT,
 							org.apache.cxf.message;version="2.7.0.redhat-610379",
-							org.apache.cxf.phase;version="2.7.0.redhat-610379"
+							org.apache.cxf.phase;version="2.7.0.redhat-610379",
+							org.apache.cxf.endpoint;version="2.7.0.redhat-610379",
+							org.apache.cxf.service.model;version="2.7.0.redhat-610379",
+							org.apache.cxf.io;version="2.7.0.redhat-610379",
+							org.apache.cxf.common.logging;version="2.7.0.redhat-610379"
 							</Import-Package>
 						</instructions>
 					</configuration>

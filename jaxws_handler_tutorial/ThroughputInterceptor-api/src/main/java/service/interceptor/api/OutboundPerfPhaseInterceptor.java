@@ -8,6 +8,6 @@ import org.apache.cxf.phase.PhaseInterceptor;
  *
  * @param <T>
  */
-public interface ThroughputPhaseInterceptor<T extends Message> extends PhaseInterceptor<T> {
+public interface OutboundPerfPhaseInterceptor<T extends Message> extends PhaseInterceptor<T> {
 
 }

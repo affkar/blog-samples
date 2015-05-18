@@ -6,9 +6,12 @@ import java.util.Map;
 
 public class Statistics {
 
+	
+	private long startTime;
 	private Map<ServiceAndOperation, PerformanceAndThroughputInfo> performanceAndThroughputInfoMap;
 	
 	public Statistics() {
+		this.startTime= System.currentTimeMillis();
 		this.performanceAndThroughputInfoMap=new HashMap<ServiceAndOperation, PerformanceAndThroughputInfo>();
 	}
 	
@@ -23,4 +26,9 @@ public class Statistics {
 		return performanceAndThroughputInfoMap.values();
 	}
 	
+	
+	public int getCurrentBucket() {
+		long current_time = System.currentTimeMillis();
+		return (int) (current_time - startTime) / 10000;
+	}
 }

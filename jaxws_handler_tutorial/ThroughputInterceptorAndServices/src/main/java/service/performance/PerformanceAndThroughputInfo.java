@@ -12,6 +12,9 @@ public class PerformanceAndThroughputInfo {
 	private Map<Integer, AtomicInteger> requestsIn;
 	private Map<Integer, AtomicInteger> responsesOut;
 	private Map<Integer, AtomicInteger> faultout;
+	private Map<Integer, List<Long>> requestPayloadSizeMap;
+	private Map<Integer, List<Long>> responsePayloadSizeMap;
+	private Map<Integer, List<Long>> faultPayloadSizeMap;
 	private Map<Integer, List<Long>> responseTimesInMs;
 	private Map<Integer, List<Long>> faultOutTimesInMs;
 	
@@ -23,6 +26,9 @@ public class PerformanceAndThroughputInfo {
 		this.faultout = new HashMap<Integer, AtomicInteger>();
 		this.responseTimesInMs=new HashMap<Integer, List<Long>>();
 		this.faultOutTimesInMs=new HashMap<Integer, List<Long>>();
+		this.faultPayloadSizeMap=new HashMap<Integer, List<Long>>();
+		this.requestPayloadSizeMap=new HashMap<Integer, List<Long>>();
+		this.responsePayloadSizeMap=new HashMap<Integer, List<Long>>();
 	}
 
 	
@@ -30,7 +36,7 @@ public class PerformanceAndThroughputInfo {
 	@Override
 	public String toString() {
 		return "PerformanceAndThroughputInfo For operationName =[" + serviceAndOperation.getOperation() + "] serviceName = [" + serviceAndOperation.getService() + "]" + "[requestsIn=" + requestsIn + ", responsesOut="
-				+ responsesOut + ", faultout=" + faultout + ", responseTimesInMs=" + responseTimesInMs + ", faultOutTimesInMs=" + faultOutTimesInMs + "]";
+				+ responsesOut + ", faultout=" + faultout + ", responseTimesInMs=" + responseTimesInMs + ", faultOutTimesInMs=" + faultOutTimesInMs +  ", requestPayloadSize="+ requestPayloadSizeMap +", responsePayloadSize="+responsePayloadSizeMap + "]";
 	}
 
 	public void incrementRequestCount(int bucket) {
@@ -43,6 +49,18 @@ public class PerformanceAndThroughputInfo {
 	
 	public void incrementFaultCount(int bucket) {
 		initialiseBucketAndIncrementCountInMap(bucket, faultout);
+	}
+	
+	public void addRequestPayloadSize(int bucket, Long payloadSize){
+		initialiseBucketAndAddPayloadSizesInMap(bucket, payloadSize, requestPayloadSizeMap);
+	}
+	
+	public void addResponsePayloadSize(int bucket, Long payloadSize){
+		initialiseBucketAndAddPayloadSizesInMap(bucket, payloadSize, responsePayloadSizeMap);
+	}
+	
+	public void addFaultPayloadSize(int bucket, Long payloadSize){
+		initialiseBucketAndAddPayloadSizesInMap(bucket, payloadSize, faultPayloadSizeMap);
 	}
 	
 	private void initialiseBucketAndIncrementCountInMap(int bucket, Map<Integer, AtomicInteger> countMap) {
@@ -63,6 +81,13 @@ public class PerformanceAndThroughputInfo {
 
 	public void addResponseTimes(int bucket, Long timeDifference) {
 		initialiseBucketAndAddResponseTimesInMap(bucket, timeDifference, responseTimesInMs);
+	}
+	
+	private void initialiseBucketAndAddPayloadSizesInMap(int bucket, Long payloadSize, Map<Integer, List<Long>> payLoadSizesMap) {
+		if(payLoadSizesMap.get(bucket)==null){
+			payLoadSizesMap.put(bucket, new ArrayList<Long>());
+		}
+		payLoadSizesMap.get(bucket).add(payloadSize);
 	}
 	
 	private void initialiseBucketAndAddResponseTimesInMap(int bucket, Long timeDifference, Map<Integer, List<Long>> returnTimeMap) {
