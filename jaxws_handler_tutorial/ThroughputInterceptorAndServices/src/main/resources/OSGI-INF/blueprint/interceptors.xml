@@ -22,9 +22,13 @@
 
 	<jaxws:endpoint 
       id="collator"
-      implementor="service.collator.CollatorPortTypeImpl"
+      implementor="#collatorImpl"
       wsdlLocation="Collator.wsdl"
       address="/collator">
    </jaxws:endpoint>
+   
+   <bean id="collatorImpl" class="service.collator.CollatorPortTypeImpl"/>
+   <bean id="collatorDaemon" class="service.performance.CollatorDaemon" factory-method="getInstance"/>
+   <bean id="ExcelTransformerBean" class="service.output.ExcelTransformer"/>
    
 </blueprint>

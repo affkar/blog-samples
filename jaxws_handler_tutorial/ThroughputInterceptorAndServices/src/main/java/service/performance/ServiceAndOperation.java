@@ -3,8 +3,8 @@ package service.performance;
 
 public final class ServiceAndOperation {
 
-	private String service;
-	private String operation;
+	private final String service;
+	private final String operation;
 	public ServiceAndOperation(String service, String operation) {
 		super();
 		if(service==null || operation == null){
